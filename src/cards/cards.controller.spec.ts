@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CardController } from './card.controller';
-import { CardService } from './card.service';
+import { CardsController } from './cards.controller';
+import { CardsService } from './cards.service';
 
 describe('CardController', () => {
-  let cardController: CardController;
+  let cardsController: CardsController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [CardController],
-      providers: [CardService],
+      controllers: [CardsController],
+      providers: [CardsService],
     }).compile();
 
-    cardController = app.get<CardController>(CardController);
+    cardsController = app.get<CardsController>(CardsController);
   });
 
   describe('createCard', () => {
@@ -20,15 +20,17 @@ describe('CardController', () => {
         name: 'John Doe',
         email: 'johndoe.24@gmail.com',
         phone: '1234567890',
+        startingPoints: 0,
+        startingStamps: 0,
+        stampsCap: 10,
       };
 
       const expectedResponse = {
-        success: true,
         message: 'Card created!',
         data: createCardDto,
       };
 
-      expect(await cardController.createCard(createCardDto)).toEqual(
+      expect(await cardsController.createCard(createCardDto)).toEqual(
         expectedResponse,
       );
     });

@@ -9,5 +9,40 @@ content-type: application/json
 {
   "name": "John Doe",
   "email": "john.doe24@gmail.com",
-  "phone": "1234567890"
+  "phone": "1234567890",
+  "stampsCap": 10
+}
+
+###
+
+POST http://localhost:3000/v1/companies HTTP/1.1
+content-type: application/json
+
+{
+  "name": "Example Company",
+  "description": "This is an example company.",
+  "logo": "https://example.com/logo.png",
+  "segment": "Technology",
+  "website": "https://example.com",
+  "cnpj": "12.345.678/0001-99",
+  "email": "contact@example.com",
+  "password": "securepassword123",
+  "phone": "+1-234-567-890",
+  "address": {
+    "street": "123 Example St",
+    "number": "456",
+    "additional": "Suite 789",
+    "neighborhood": "Example Neighborhood",
+    "city": "Example City",
+    "state": "EX",
+    "zip": "12345-678",
+    "country": "Example Country"
+  },
+  "lcard_rule": {
+    "max_stamps": 10,
+    "stamps_prize": "Free Coffee",
+    "score_goal": 100,
+    "score_goal_prize": "Discount Voucher",
+    "score_booster": 1
+  }
 }
