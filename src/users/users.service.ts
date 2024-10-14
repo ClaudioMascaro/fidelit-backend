@@ -18,6 +18,7 @@ export class UsersService {
 
     const user = new User();
     user.name = createUserDto.name;
+    user.company_id = createUserDto.company_id;
     user.email = createUserDto.email;
     user.cpf = createUserDto.cpf;
     user.cnpj = createUserDto.cnpj;
@@ -36,13 +37,19 @@ export class UsersService {
     user.password = passwordHash;
     user.salt = salt;
 
-    return this.usersRepository.save(user);
+    const createdUser = await this.usersRepository.save(user);
+
+    return {
+      ...createdUser,
+      password: undefined,
+      salt: undefined,
+    };
   }
 
   encrypt({ password, salt }) {
     return PBKDF2(password, salt, {
       keySize: 256 / 32,
-      iterations: 100,
+      iterations: 10000,
     }).toString();
   }
 

@@ -39,7 +39,7 @@ export class CompaniesService {
     address.created_at = now;
     address.updated_at = now;
 
-    const { id: addressId } = await this.addressesRepository.save(address);
+    const createdAddress = await this.addressesRepository.save(address);
 
     const lcardRule = new LcardRule();
     lcardRule.max_stamps = createCompanyDto.lcard_rule.max_stamps;
@@ -50,7 +50,7 @@ export class CompaniesService {
     lcardRule.created_at = now;
     lcardRule.updated_at = now;
 
-    const { id: lcardRuleId } = await this.lcardRulesRepository.save(lcardRule);
+    const createdLcardRule = await this.lcardRulesRepository.save(lcardRule);
 
     const company = new Company();
     company.name = createCompanyDto.name;
@@ -61,8 +61,8 @@ export class CompaniesService {
     company.email = createCompanyDto.email;
     company.phone = createCompanyDto.phone;
     company.cnpj = createCompanyDto.cnpj;
-    company.main_address_id = addressId;
-    company.lcard_rules_id = lcardRuleId;
+    company.main_address_id = createdAddress.id;
+    company.lcard_rules_id = createdLcardRule.id;
     company.created_at = now;
     company.updated_at = now;
 
@@ -82,7 +82,12 @@ export class CompaniesService {
 
     const createdUser = await this.usersService.create(userDto);
 
-    return createdCompany;
+    return {
+      ...createdCompany,
+      user: createdUser,
+      address: createdAddress,
+      lcard_rule: createdLcardRule,
+    };
   }
 
   findAll() {
