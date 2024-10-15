@@ -46,3 +46,19 @@ content-type: application/json
     "score_booster": 1
   }
 }
+
+###
+
+POST http://localhost:3000/v1/auth/login HTTP/1.1
+content-type: application/json
+
+{
+  "email": "contact@example.com",
+  "password": "securepassword123"
+}
+
+###
+
+GET http://localhost:3000/v1/auth/profile HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlIjoiY29tcGFueV9hZG1pbiIsImNvbXBhbnkiOjMsImlhdCI6MTcyOTAwMDYwMCwiZXhwIjoxNzI5MDAwNjYwfQ.28rzMHWUjagfWszwZQbXEpHKnjQgbrPlndWYSxoTotY

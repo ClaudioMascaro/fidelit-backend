@@ -66,12 +66,16 @@ export class UsersService {
     return lib.WordArray.random(16).toString();
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findOneEmail(email: string): Promise<User> {
+    return this.usersRepository.findOneBy({ email });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOneCpf(cpf: string): Promise<User> {
+    return this.usersRepository.findOneBy({ cpf });
+  }
+
+  async findOnePhone(phone: string): Promise<User> {
+    return this.usersRepository.findOneBy({ phone });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

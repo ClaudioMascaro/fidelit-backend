@@ -16,12 +16,14 @@ import {
 } from './dto/create-company.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { ZodValidationPipe } from 'src/common/validation/pipeline.validation';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Controller('companies')
 export class CompaniesController {
   constructor(private readonly companiesService: CompaniesService) {}
 
   @Version('1')
+  @Public()
   @Post()
   @UsePipes(new ZodValidationPipe(createCompanySchema))
   create(@Body() createCompanyDto: CreateCompanyDto) {
