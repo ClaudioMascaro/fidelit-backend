@@ -5,13 +5,14 @@ GET http://localhost:3000/status HTTP/1.1
 
 POST http://localhost:3000/v1/cards HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTcyOTg3NTg1MCwiZXhwIjoxNzMwMDQ4NjUwfQ.NhrX7vvSmJdd1dRkjIG7EL4nx6D4hFMbhIEX5-oXX5I
 
 {
   "name": "John Doe",
   "email": "john.doe24@gmail.com",
-  "phone": "1234567890",
-  "stampsCap": 10
+  "phone": "1234567890"
 }
+
 
 ###
 
@@ -24,9 +25,9 @@ content-type: application/json
   "logo": "https://example.com/logo.png",
   "segment": "Technology",
   "website": "https://example.com",
-  "cnpj": "12.345.678/0001-99",
-  "email": "contact@example.com",
-  "password": "securepassword123",
+  "cnpj": "12.346.678/0001-99",
+  "email": "contact@example2.com",
+  "password": "securepassword1232",
   "phone": "+1-234-567-890",
   "address": {
     "street": "123 Example St",
@@ -61,4 +62,4 @@ content-type: application/json
 
 GET http://localhost:3000/v1/auth/profile HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlIjoiY29tcGFueV9hZG1pbiIsImNvbXBhbnkiOjMsImlhdCI6MTcyOTAwMDYwMCwiZXhwIjoxNzI5MDAwNjYwfQ.28rzMHWUjagfWszwZQbXEpHKnjQgbrPlndWYSxoTotY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTcyOTg3NTg1MCwiZXhwIjoxNzMwMDQ4NjUwfQ.NhrX7vvSmJdd1dRkjIG7EL4nx6D4hFMbhIEX5-oXX5I

@@ -51,7 +51,7 @@ export class AuthService {
       sub: user.id,
       email: user.email,
       phone: user.phone,
-      role: user.role,
+      roles: [user.role],
       company: user.company_id,
     };
     return {
