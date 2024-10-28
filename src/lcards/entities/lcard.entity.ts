@@ -1,4 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToMany,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { LcardStamp } from './stamp.entity';
+import { User } from 'src/users/entities/user.entity';
 
 @Entity('lcards')
 export class Lcard {
@@ -22,4 +32,11 @@ export class Lcard {
 
   @Column()
   updated_at: Date;
+
+  @ManyToOne(() => User, (user) => user.lcards)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @OneToMany(() => LcardStamp, (stamp) => stamp.lcard)
+  stamps: LcardStamp[];
 }

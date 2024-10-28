@@ -1,16 +1,11 @@
-/**
- * 
-              CREATE TABLE "lcard_stamps" (
-                "id" SERIAL PRIMARY KEY,
-                "lcard_id" integer NOT NULL,
-                "expires_at" timestamp,
-                "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
-                "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
-              );
-              
- */
-
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Lcard } from './lcard.entity';
 
 @Entity('lcard_stamps')
 export class LcardStamp {
@@ -28,4 +23,8 @@ export class LcardStamp {
 
   @Column()
   updated_at: Date;
+
+  @ManyToOne(() => Lcard, (lcard) => lcard.stamps)
+  @JoinColumn({ name: 'lcard_id' })
+  lcard: Lcard;
 }

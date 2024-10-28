@@ -28,7 +28,8 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "score" integer,
                 "score_expires_at" timestamp,
                 "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
-                "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
+                "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(company_id, user_id)
               );
 
               CREATE TABLE "lcard_stamps" (

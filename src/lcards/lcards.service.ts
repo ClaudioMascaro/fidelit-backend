@@ -42,7 +42,6 @@ export class LcardsService {
         newUser.email = createLcardDto.email;
         newUser.phone = createLcardDto.phone;
         newUser.cpf = createLcardDto.cpf;
-        newUser.company_id = createLcardDto.company_id;
         newUser.birthday = new Date(createLcardDto.birthday);
         newUser.role = Role.CardHolder;
         newUser.created_at = now;
@@ -99,6 +98,83 @@ export class LcardsService {
       throw new BadRequestException(error.message);
     } finally {
       await queryRunner.release();
+    }
+  }
+
+  async listLcards(company_id: number): Promise<object> {
+    try {
+      const lcardsWithDetails = await this.dataSource.manager
+        .createQueryBuilder(Lcard, 'lcard')
+        .leftJoinAndSelect('lcard.user', 'user')
+        .leftJoinAndSelect('lcard.stamps', 'stamps')
+        .where('lcard.company_id = :company_id', { company_id })
+        .select([
+          'lcard.id',
+          'lcard.company_id',
+          'lcard.score',
+          'lcard.score_expires_at',
+          'lcard.created_at',
+          'lcard.updated_at',
+          'user.id',
+          'user.name',
+          'user.email',
+          'user.phone',
+          'user.cpf',
+          'user.birthday',
+          'user.created_at',
+          'user.updated_at',
+          'stamps.id',
+          'stamps.expires_at',
+          'stamps.created_at',
+          'stamps.updated_at',
+        ])
+        .getMany();
+
+      return {
+        message: 'Cards listed successfully',
+        data: lcardsWithDetails,
+      };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  async getLcard(id: number, company_id: number): Promise<object> {
+    try {
+      const lcardWithDetails = await this.dataSource.manager
+        .createQueryBuilder(Lcard, 'lcard')
+        .leftJoinAndSelect('lcard.user', 'user')
+        .leftJoinAndSelect('lcard.stamps', 'stamps')
+        .where('lcard.id = :id', { id })
+        .andWhere('lcard.company_id = :company_id', { company_id })
+        .select([
+          'lcard.id',
+          'lcard.company_id',
+          'lcard.score',
+          'lcard.score_expires_at',
+          'lcard.created_at',
+          'lcard.updated_at',
+          'user.id',
+          'user.name',
+          'user.email',
+          'user.phone',
+          'user.cpf',
+          'user.birthday',
+          'user.created_at',
+          'user.updated_at',
+          'stamps.id',
+          'stamps.expires_at',
+          'stamps.created_at',
+          'stamps.updated_at',
+        ])
+        .getOne();
+
+      return {
+        message: 'Card retrieved successfully',
+        data: lcardWithDetails,
+      };
+    } catch (error) {
+      throw new BadRequestException(error.message);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -70,6 +70,10 @@ export class UsersService {
     return this.usersRepository.findOneBy({ email });
   }
 
+  async findOne(id: number, company_id: number): Promise<User> {
+    return this.usersRepository.findOneBy({ id, company_id });
+  }
+
   async findOneCpf(cpf: string): Promise<User> {
     return this.usersRepository.findOneBy({ cpf });
   }
@@ -78,11 +82,56 @@ export class UsersService {
     return this.usersRepository.findOneBy({ phone });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async findAllCompany(company_id: number) {
+    return this.usersRepository.findBy({ company_id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async update(id: number, company_id: number, updateUserDto: UpdateUserDto) {
+    try {
+      const user = await this.usersRepository.findOneBy({ id, company_id });
+
+      if (!user) {
+        return {
+          message: 'User not found',
+        };
+      }
+
+      const now = new Date();
+
+      user.name = updateUserDto.name;
+      user.email = updateUserDto.email;
+      user.cpf = updateUserDto.cpf;
+      user.cnpj = updateUserDto.cnpj;
+      user.phone = updateUserDto.phone;
+      user.role = updateUserDto.role;
+      user.birthday = updateUserDto.birthday;
+      user.updated_at = now;
+
+      const updatedUser = await this.usersRepository.save(user);
+
+      return {
+        ...updatedUser,
+        password: undefined,
+        salt: undefined,
+      };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  async remove(id: number, company_id: number) {
+    try {
+      const user = await this.usersRepository.findOneBy({ id, company_id });
+
+      if (!user) {
+        return {
+          message: 'User not found',
+        };
+      }
+
+      return await this.usersRepository.remove(user);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 }

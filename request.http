@@ -3,18 +3,24 @@ GET http://localhost:3000/status HTTP/1.1
 
 ###
 
+GET http://localhost:3000/v1/lcards HTTP/1.1
+content-type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGwxOS5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxNDMwMjYsImV4cCI6MTczMDMxNTgyNn0.vMc3DjEKK8tDCFf0VtLXJ5WeY1BLCj0wLqLeiGfT1eM
+###
+
 POST http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMy5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxMTk4OTUsImV4cCI6MTczMDI5MjY5NX0.Aui38Kv4gxZn4oMdy52VdvnlTTUanpOBRlzWYP8bfT4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
 
 {
   "name": "John Doe",
   "email": "john.doe25@gmail.com",
-  "phone": "1224567891",
-  "cpf": "12245678901",
+  "phone": "1234567890",
+  "cpf": "12345678900",
   "birthday": "1990-01-01",
-  "startingPoints": 250,
-  "startingStamps": 5
+  "startingPoints": 450,
+  "startingStamps": 6
 }
 
 
@@ -29,8 +35,8 @@ content-type: application/json
   "logo": "https://example.com/logo.png",
   "segment": "Technology",
   "website": "https://example.com",
-  "cnpj": "12.346.672/0001-99",
-  "email": "contact@example3.com",
+  "cnpj": "12.346.618/0001-99",
+  "email": "contact@example18.com",
   "password": "securepassword1232",
   "phone": "+1-234-567-890",
   "address": {
@@ -60,7 +66,7 @@ POST http://localhost:3000/v1/auth/login HTTP/1.1
 content-type: application/json
 
 {
-  "email": "contact@example3.com",
+  "email": "contact@example18.com",
   "password": "securepassword1232"
 }
 

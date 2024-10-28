@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Lcard } from 'src/lcards/entities/lcard.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('users')
 export class User {
@@ -40,4 +41,7 @@ export class User {
 
   @Column()
   updated_at: Date;
+
+  @OneToMany(() => Lcard, (lcard) => lcard.user)
+  lcards: Lcard[];
 }

@@ -24,12 +24,18 @@ describe('LcardController', () => {
         startingStamps: 0,
       };
 
+      const req = {
+        user: {
+          company: 1,
+        },
+      };
+
       const expectedResponse = {
         message: 'Card created!',
         data: createCardDto,
       };
 
-      expect(await lcardsController.createCard(createCardDto)).toEqual(
+      expect(await lcardsController.createLcard(createCardDto, req)).toEqual(
         expectedResponse,
       );
     });

@@ -1,6 +1,8 @@
 import {
   Body,
   Controller,
+  Get,
+  Param,
   Post,
   Request,
   UsePipes,
@@ -20,11 +22,26 @@ export class LcardsController {
   @Post()
   @Roles(Role.CompanyAdmin, Role.CompanyUser)
   @UsePipes(new ZodValidationPipe(createLcardSchema))
-  async createCard(
+  async createLcard(
     @Body() createLcardDto: CreateLcardDto,
     @Request() req,
   ): Promise<object> {
     createLcardDto.company_id = req.user.company;
     return this.lcardService.createLcard(createLcardDto);
+  }
+
+  @Version('1')
+  @Get()
+  @Roles(Role.CompanyAdmin, Role.CompanyUser)
+  async getCards(@Request() req): Promise<object> {
+    return this.lcardService.listLcards(req.user.company);
+  }
+
+  @Version('1')
+  @Get(':id')
+  @Roles(Role.CompanyAdmin, Role.CompanyUser)
+  async getCard(@Request() req, @Param('id') id: number): Promise<object> {
+    const company_id = req.user.company;
+    return this.lcardService.getLcard(id, company_id);
   }
 }
