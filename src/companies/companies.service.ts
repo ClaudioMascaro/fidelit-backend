@@ -8,6 +8,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 import { UsersService } from 'src/users/users.service';
 
 import { DataSource } from 'typeorm';
+import { Role } from 'src/auth/enums/role.enum';
 
 @Injectable()
 export class CompaniesService {
@@ -44,6 +45,10 @@ export class CompaniesService {
       lcardRule.score_goal = createCompanyDto.lcard_rule.score_goal;
       lcardRule.score_goal_prize = createCompanyDto.lcard_rule.score_goal_prize;
       lcardRule.score_booster = createCompanyDto.lcard_rule.score_booster;
+      lcardRule.stamps_expiration_time =
+        createCompanyDto.lcard_rule.stamps_expiration_time;
+      lcardRule.score_expiration_time =
+        createCompanyDto.lcard_rule.score_expiration_time;
       lcardRule.created_at = now;
       lcardRule.updated_at = now;
 
@@ -73,7 +78,7 @@ export class CompaniesService {
         phone: createCompanyDto.phone,
         cnpj: createCompanyDto.cnpj,
         password: createCompanyDto.password,
-        role: 'company_admin',
+        role: Role.CompanyAdmin,
         company_id: createdCompany.id,
       };
 
@@ -94,6 +99,21 @@ export class CompaniesService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  async createUser(createCompanyUser: CreateUserDto) {
+    const userDto: CreateUserDto = {
+      name: createCompanyUser.name,
+      password: createCompanyUser.password,
+      email: createCompanyUser.email,
+      phone: createCompanyUser.phone,
+      cpf: createCompanyUser.cpf,
+      company_id: createCompanyUser.company_id,
+      birthday: createCompanyUser.birthday,
+      role: Role.CompanyUser,
+    };
+
+    return await this.usersService.create(userDto);
   }
 
   findAll() {

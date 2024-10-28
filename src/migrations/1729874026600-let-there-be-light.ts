@@ -26,7 +26,15 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "company_id" integer NOT NULL,
                 "user_id" integer NOT NULL,
                 "score" integer,
-                "stamps" integer,
+                "score_expires_at" timestamp,
+                "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
+                "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
+              );
+
+              CREATE TABLE "lcard_stamps" (
+                "id" SERIAL PRIMARY KEY,
+                "lcard_id" integer NOT NULL,
+                "expires_at" timestamp,
                 "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
                 "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
               );
@@ -38,8 +46,8 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "cpf" varchar UNIQUE,
                 "cnpj" varchar UNIQUE,
                 "phone" varchar,
-                "password" varchar NOT NULL,
-                "salt" varchar NOT NULL,
+                "password" varchar,
+                "salt" varchar,
                 "role" varchar,
                 "birthday" date,
                 "company_id" integer,
@@ -51,6 +59,8 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "id" SERIAL PRIMARY KEY,
                 "max_stamps" integer,
                 "stamps_prize" text,
+                "stamps_expiration_time" integer,
+                "score_expiration_time" integer,
                 "score_goal" integer,
                 "score_goal_prize" text,
                 "score_booster" float,

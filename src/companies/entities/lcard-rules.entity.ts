@@ -15,6 +15,12 @@ export class LcardRule {
   score_goal: number;
 
   @Column()
+  stamps_expiration_time: number;
+
+  @Column()
+  score_expiration_time: number;
+
+  @Column()
   score_goal_prize: string;
 
   @Column()

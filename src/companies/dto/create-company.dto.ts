@@ -25,6 +25,8 @@ export const createCompanySchema = z
       max_stamps: z.number(),
       stamps_prize: z.string(),
       score_goal: z.number(),
+      stamps_expiration_time: z.number(),
+      score_expiration_time: z.number(),
       score_goal_prize: z.string(),
       score_booster: z.number(),
     }),

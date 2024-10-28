@@ -1,18 +1,21 @@
 import { z } from 'zod';
 
-export const createCardSchema = z
+export const createLcardSchema = z
   .object({
     name: z.string(),
     email: z.string().email(),
+    cpf: z.string().length(11),
+    birthday: z.string().date(),
     phone: z.string(),
+    company_id: z.number(),
     startingPoints: z.number(),
     startingStamps: z.number(),
-    stampsCap: z.number(),
   })
   .partial({
     startingPoints: true,
     startingStamps: true,
+    company_id: true,
   })
   .strict();
 
-export type CreateCardDto = z.infer<typeof createCardSchema>;
+export type CreateLcardDto = z.infer<typeof createLcardSchema>;

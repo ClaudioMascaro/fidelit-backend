@@ -3,14 +3,18 @@ GET http://localhost:3000/status HTTP/1.1
 
 ###
 
-POST http://localhost:3000/v1/cards HTTP/1.1
+POST http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTcyOTg3NTg1MCwiZXhwIjoxNzMwMDQ4NjUwfQ.NhrX7vvSmJdd1dRkjIG7EL4nx6D4hFMbhIEX5-oXX5I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMy5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxMTk4OTUsImV4cCI6MTczMDI5MjY5NX0.Aui38Kv4gxZn4oMdy52VdvnlTTUanpOBRlzWYP8bfT4
 
 {
   "name": "John Doe",
-  "email": "john.doe24@gmail.com",
-  "phone": "1234567890"
+  "email": "john.doe25@gmail.com",
+  "phone": "1224567891",
+  "cpf": "12245678901",
+  "birthday": "1990-01-01",
+  "startingPoints": 250,
+  "startingStamps": 5
 }
 
 
@@ -25,8 +29,8 @@ content-type: application/json
   "logo": "https://example.com/logo.png",
   "segment": "Technology",
   "website": "https://example.com",
-  "cnpj": "12.346.678/0001-99",
-  "email": "contact@example2.com",
+  "cnpj": "12.346.672/0001-99",
+  "email": "contact@example3.com",
   "password": "securepassword1232",
   "phone": "+1-234-567-890",
   "address": {
@@ -44,6 +48,8 @@ content-type: application/json
     "stamps_prize": "Free Coffee",
     "score_goal": 100,
     "score_goal_prize": "Discount Voucher",
+    "score_expiration_time": 180,
+    "stamps_expiration_time": 365,
     "score_booster": 1
   }
 }
@@ -54,12 +60,12 @@ POST http://localhost:3000/v1/auth/login HTTP/1.1
 content-type: application/json
 
 {
-  "email": "contact@example.com",
-  "password": "securepassword123"
+  "email": "contact@example3.com",
+  "password": "securepassword1232"
 }
 
 ###
 
 GET http://localhost:3000/v1/auth/profile HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTcyOTg3NTg1MCwiZXhwIjoxNzMwMDQ4NjUwfQ.NhrX7vvSmJdd1dRkjIG7EL4nx6D4hFMbhIEX5-oXX5I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMy5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxMTk4OTUsImV4cCI6MTczMDI5MjY5NX0.Aui38Kv4gxZn4oMdy52VdvnlTTUanpOBRlzWYP8bfT4

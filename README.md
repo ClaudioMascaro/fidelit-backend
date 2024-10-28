@@ -1,13 +1,12 @@
-todo:
+### todo:
 
-update tests
+- List and get lcards, company users
+- Sales resources
+- Plan and subscription management (using pagar.me)
+- Schemas and field guard rails checks
 
-create structured error handling
+-- May deploy to production after that
 
-authentication
+Later on:
 
-authorization
-
-plan and subscription management (using pagar.me)
-
-lcards and sales resources
+- Automatized tests
