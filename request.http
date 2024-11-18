@@ -9,7 +9,7 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
 ###
 
-GET http://localhost:3000/v1/lcards/5 HTTP/1.1
+GET http://localhost:3000/v1/lcards/3 HTTP/1.1
 content-type: application/json
 #Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
@@ -20,21 +20,20 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTYzMTU2LCJleHAiOjE3MzIxMzU5NTZ9.dQ89LnAqMF-ir6UPtrwQe7VhMlNcfiBbmHQ7L9JqO3w
 
 {
-  "user_id": 2,
-  "lcard_id": 1,
+  "lcard_id": 3,
   "value": 100.0
 }
 ###
 
 POST http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTYzMTU2LCJleHAiOjE3MzIxMzU5NTZ9.dQ89LnAqMF-ir6UPtrwQe7VhMlNcfiBbmHQ7L9JqO3w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTY4MzIwLCJleHAiOjE3MzIxNDExMjB9._anYA_a-ROBOk8TiwdGnFOYff0pjyy9HLDbkAyi65M0
 
 {
   "name": "John Doe",
-  "email": "john.doe28@gmail.com",
-  "phone": "1334567890",
-  "cpf": "12333677900",
+  "email": "john.doe1@gmail.com",
+  "phone": "1354567891",
+  "cpf": "12533677901",
   "birthday": "1990-01-01",
   "startingPoints": 0,
   "startingStamps": 0
@@ -96,10 +95,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsI
 ###
 PATCH http://localhost:3000/v1/companies/1 HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTY4MzIwLCJleHAiOjE3MzIxNDExMjB9._anYA_a-ROBOk8TiwdGnFOYff0pjyy9HLDbkAyi65M0
 
 {
   "lcard_rule": {
-    "score_booster": 2
+    "score_booster": 1
   }
 }

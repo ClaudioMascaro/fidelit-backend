@@ -57,7 +57,7 @@ export class SalesService {
       // Create sale
       const sale = new Sale();
       sale.company_id = createSaleDto.company_id;
-      sale.user_id = createSaleDto.user_id;
+      sale.user_id = lcard.user.id;
       sale.lcard_id = createSaleDto.lcard_id;
       sale.value = createSaleDto.value;
       sale.created_at = now;
@@ -89,12 +89,14 @@ export class SalesService {
 
       // Send notification
       const userPhone = lcard.user.phone;
-      const message = `Olá ${lcard.user.name}, você acabou de ganhar ${sale.value * companyLcardRules.score_booster} 
-      pontos em seu cartão fidelidade de ${company.name}. Acesse o link do seu cartão para acompanhar seus pontos e carimbos:`;
-      await this.notificationsService.sendWhatsAppMessage(
-        '+5511985911669',
-        message,
-      );
+
+      const message =
+        `Olá ${lcard.user.name}, você acabou de ganhar ` +
+        `${sale.value * companyLcardRules.score_booster} pontos em seu cartão ` +
+        `fidelidade de ${company.name}.\n\nAcesse o link do seu cartão para ver as ` +
+        `recompensas e acompanhar seus pontos e carimbos: \n\nhttps://google.com.br`;
+
+      await this.notificationsService.sendWhatsAppMessage(userPhone, message);
 
       return {
         message: 'Sale created successfully',

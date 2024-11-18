@@ -14,6 +14,13 @@ export class NotificationsService {
 
   async sendWhatsAppMessage(to: string, body: string): Promise<void> {
     const from = this.configService.get<string>('twilio.from');
+
+    const whatsappNotificationEnabled =
+      this.configService.get<boolean>('twilio.enabled');
+
+    if (!whatsappNotificationEnabled) {
+      return;
+    }
     await this.client.messages.create({
       from,
       to: `whatsapp:${to}`,

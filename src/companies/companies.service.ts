@@ -10,15 +10,17 @@ import { CreateCompanyDto } from './dto/create-company.dto';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { UsersService } from 'src/users/users.service';
-
 import { DataSource } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
+import { NotificationsService } from 'src/notifications/notifications.service';
+import { Lcard } from 'src/lcards/entities/lcard.entity';
 
 @Injectable()
 export class CompaniesService {
   constructor(
     private readonly usersService: UsersService,
     private readonly dataSource: DataSource,
+    private readonly notificationsService: NotificationsService,
   ) {}
 
   async create(createCompanyDto: CreateCompanyDto) {
@@ -172,6 +174,8 @@ export class CompaniesService {
         });
 
         if (lcardRule) {
+          const oldScoreBooster = lcardRule.score_booster;
+
           lcardRule.max_stamps =
             updateCompanyDto.lcard_rule.max_stamps || lcardRule.max_stamps;
           lcardRule.stamps_prize =
@@ -193,6 +197,55 @@ export class CompaniesService {
           lcardRule.updated_at = now;
 
           await queryRunner.manager.save(lcardRule);
+
+          if (
+            oldScoreBooster < lcardRule.score_booster ||
+            lcardRule.score_booster > 1
+          ) {
+            const lcards = await queryRunner.manager.find(Lcard, {
+              where: { company_id: company.id },
+              relations: ['user'],
+            });
+
+            for (const lcard of lcards) {
+              const message =
+                `Olá ${lcard.user.name},\n\n` +
+                `${company.name} está oferecendo um novo multiplicador de pontos ` +
+                `para suas compras! Agora, você ganhará ${lcardRule.score_booster}x mais pontos ` +
+                `em cada compra realizada.\n\n` +
+                `Aproveite essa oportunidade para acumular mais pontos e desfrutar dos benefícios ` +
+                `de fidelidade que preparamos para você.\n\n` +
+                `Acesse o link do seu cartão para ver as recompensas e acompanhar seus pontos e carimbos: ` +
+                `https://google.com.br\n\n`;
+              await this.notificationsService.sendWhatsAppMessage(
+                lcard.user.phone,
+                message,
+              );
+            }
+          }
+
+          if (
+            oldScoreBooster > lcardRule.score_booster &&
+            lcardRule.score_booster === 1
+          ) {
+            const lcards = await queryRunner.manager.find(Lcard, {
+              where: { company_id: company.id },
+              relations: ['user'],
+            });
+
+            for (const lcard of lcards) {
+              const message =
+                `Olá ${lcard.user.name},\n\n` +
+                `A promoção de multiplicação de pontos de ${company.name} se encerrou. \n\n` +
+                `Fique ligado para novas promoções e oportunidades de acumular mais pontos!` +
+                `\n\nAcesse o link do seu cartão para ver as recompensas e acompanhar ` +
+                `seus pontos e carimbos: \n\nhttps://google.com.br`;
+              await this.notificationsService.sendWhatsAppMessage(
+                lcard.user.phone,
+                message,
+              );
+            }
+          }
         }
       }
 

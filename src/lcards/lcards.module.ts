@@ -7,11 +7,13 @@ import { LcardRule } from 'src/companies/entities/lcard-rules.entity';
 import { LcardStamp } from './entities/stamp.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from 'src/users/users.module';
+import { NotificationsModule } from 'src/notifications/notifications.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Company, Lcard, LcardRule, LcardStamp]),
     UsersModule,
+    NotificationsModule,
   ],
   controllers: [LcardsController],
   providers: [LcardsService],

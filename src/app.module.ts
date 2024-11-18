@@ -10,10 +10,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { SalesModule } from './sales/sales.module';
 import typeorm from './config/typeorm';
+import twilio from './config/twilio';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [typeorm] }),
+    ConfigModule.forRoot({ isGlobal: true, load: [typeorm, twilio] }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) =>

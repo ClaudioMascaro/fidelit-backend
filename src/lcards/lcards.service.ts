@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { CreateLcardDto } from './dto/create-card.dto';
 import { UsersService } from 'src/users/users.service';
 import { DataSource } from 'typeorm';
@@ -8,12 +8,14 @@ import { Lcard } from './entities/lcard.entity';
 import { LcardStamp } from './entities/stamp.entity';
 import { LcardRule } from 'src/companies/entities/lcard-rules.entity';
 import { Company } from 'src/companies/entities/company.entity';
+import { NotificationsService } from 'src/notifications/notifications.service';
 
 @Injectable()
 export class LcardsService {
   constructor(
     private readonly usersService: UsersService,
     private readonly dataSource: DataSource,
+    private readonly notificationsService: NotificationsService,
   ) {}
 
   async createLcard(createLcardDto: CreateLcardDto): Promise<object> {
@@ -88,6 +90,13 @@ export class LcardsService {
         user: user,
         stamps,
       };
+
+      // Send notification
+      const message =
+        `Olá ${user.name}, seu cartão de fidelidade de ${company.name} acaba de ser criado!` +
+        `\n\nAcesse o link abaixo para acompanhar e ficar ligado nas recompensas que você pode ganhar:` +
+        `\n\nhttps://google.com.br`;
+      await this.notificationsService.sendWhatsAppMessage(user.phone, message);
 
       return {
         message: 'Card created successfully',

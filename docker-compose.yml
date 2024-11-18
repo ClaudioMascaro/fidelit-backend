@@ -15,8 +15,6 @@ services:
     build: .
     container_name: fidelit-backend
     command: sh -c "npm run migration:run && npm run start:dev"
-    env_file:
-      - ./.env
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
@@ -31,6 +29,7 @@ services:
       TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID}
       TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN}
       TWILIO_WHATSAPP_FROM: ${TWILIO_WHATSAPP_FROM}
+      TWILIO_ENABLED: ${TWILIO_ENABLED}
     volumes:
       - .:/usr/src/app
     ports:
