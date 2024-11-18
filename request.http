@@ -6,21 +6,38 @@ GET http://localhost:3000/status HTTP/1.1
 GET http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
 #Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGwxOS5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxNDMwMjYsImV4cCI6MTczMDMxNTgyNn0.vMc3DjEKK8tDCFf0VtLXJ5WeY1BLCj0wLqLeiGfT1eM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+###
+
+GET http://localhost:3000/v1/lcards/5 HTTP/1.1
+content-type: application/json
+#Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+###
+
+POST http://localhost:3000/v1/sales HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTYzMTU2LCJleHAiOjE3MzIxMzU5NTZ9.dQ89LnAqMF-ir6UPtrwQe7VhMlNcfiBbmHQ7L9JqO3w
+
+{
+  "user_id": 2,
+  "lcard_id": 1,
+  "value": 100.0
+}
 ###
 
 POST http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTYzMTU2LCJleHAiOjE3MzIxMzU5NTZ9.dQ89LnAqMF-ir6UPtrwQe7VhMlNcfiBbmHQ7L9JqO3w
 
 {
   "name": "John Doe",
-  "email": "john.doe25@gmail.com",
-  "phone": "1234567890",
-  "cpf": "12345678900",
+  "email": "john.doe28@gmail.com",
+  "phone": "1334567890",
+  "cpf": "12333677900",
   "birthday": "1990-01-01",
-  "startingPoints": 450,
-  "startingStamps": 6
+  "startingPoints": 0,
+  "startingStamps": 0
 }
 
 
@@ -74,4 +91,15 @@ content-type: application/json
 
 GET http://localhost:3000/v1/auth/profile HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMy5jb20iLCJwaG9uZSI6IisxLTIzNC01NjctODkwIiwicm9sZXMiOlsiY29tcGFueV9hZG1pbiJdLCJjb21wYW55IjoxLCJpYXQiOjE3MzAxMTk4OTUsImV4cCI6MTczMDI5MjY5NX0.Aui38Kv4gxZn4oMdy52VdvnlTTUanpOBRlzWYP8bfT4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+
+###
+PATCH http://localhost:3000/v1/companies/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+
+{
+  "lcard_rule": {
+    "score_booster": 2
+  }
+}

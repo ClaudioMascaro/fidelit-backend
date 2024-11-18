@@ -8,6 +8,8 @@ import {
   Delete,
   Version,
   UsePipes,
+  Request,
+  NotFoundException,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import {
@@ -17,6 +19,8 @@ import {
 import { UpdateCompanyDto } from './dto/update-company.dto';
 import { ZodValidationPipe } from 'src/common/validation/pipeline.validation';
 import { Public } from 'src/auth/decorators/public.decorator';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/auth/enums/role.enum';
 
 @Controller('companies')
 export class CompaniesController {
@@ -40,9 +44,19 @@ export class CompaniesController {
     return this.companiesService.findOne(+id);
   }
 
+  @Version('1')
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCompanyDto: UpdateCompanyDto) {
-    return this.companiesService.update(+id, updateCompanyDto);
+  @Roles(Role.CompanyAdmin)
+  update(
+    @Param('id') id: string,
+    @Body() updateCompanyDto: UpdateCompanyDto,
+    @Request() req,
+  ) {
+    const companyId = req.user.company;
+    if (companyId !== +id) {
+      throw new NotFoundException();
+    }
+    return this.companiesService.update(companyId, updateCompanyDto);
   }
 
   @Delete(':id')

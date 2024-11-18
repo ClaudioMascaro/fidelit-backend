@@ -23,7 +23,7 @@ export class LcardRule {
   @Column()
   score_goal_prize: string;
 
-  @Column()
+  @Column('float')
   score_booster: number;
 
   @Column()
