@@ -46,6 +46,20 @@ export class UsersService {
     };
   }
 
+  async updatePassword(userId: number, newPassword: string) {
+    const user = await this.usersRepository.findOneBy({ id: userId });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    const salt = this.generateRandomKey();
+    const passwordHash = this.encrypt({ password: newPassword, salt });
+
+    user.password = passwordHash;
+    user.salt = salt;
+    await this.usersRepository.save(user);
+  }
+
   encrypt({ password, salt }) {
     return PBKDF2(password, salt, {
       keySize: 256 / 32,

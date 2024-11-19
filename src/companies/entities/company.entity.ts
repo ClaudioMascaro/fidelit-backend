@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Address } from './address.entity';
+import { LcardRule } from './lcard-rules.entity';
 
 @Entity('companies')
 export class Company {
@@ -49,4 +57,12 @@ export class Company {
 
   @Column()
   updated_at: Date;
+
+  @OneToOne(() => Address, (address) => address.id)
+  @JoinColumn({ name: 'main_address_id' })
+  address: Address;
+
+  @OneToOne(() => LcardRule, (lcardRules) => lcardRules.id)
+  @JoinColumn({ name: 'lcard_rules_id' })
+  lcardRules: LcardRule;
 }

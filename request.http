@@ -52,7 +52,7 @@ content-type: application/json
   "segment": "Technology",
   "website": "https://example.com",
   "cnpj": "12.346.618/0001-99",
-  "email": "contact@example18.com",
+  "email": "claudiormascaro@gmail.com",
   "password": "securepassword1232",
   "phone": "+1-234-567-890",
   "address": {
@@ -82,12 +82,41 @@ POST http://localhost:3000/v1/auth/login HTTP/1.1
 content-type: application/json
 
 {
-  "email": "contact@example18.com",
-  "password": "securepassword1232"
+  "email": "claudiormascaro@gmail.com",
+  "password": "securepassword111"
 }
 
 ###
 
+POST http://localhost:3000/v1/companies/verify HTTP/1.1
+content-type: application/json
+
+{
+  "email": "claudiormascaro@gmail.com",
+  "code": 463440
+}
+
+###
+
+POST http://localhost:3000/v1/auth/forgot-password?channel=email HTTP/1.1
+content-type: application/json
+
+{
+  "email": "claudiormascaro@gmail.com"
+}
+
+###
+
+POST http://localhost:3000/v1/auth/reset-password?channel=email HTTP/1.1
+content-type: application/json
+
+{
+  "email": "claudiormascaro@gmail.com",
+  "code": 877189,
+  "newPassword": "securepassword111"
+}
+
+###
 GET http://localhost:3000/v1/auth/profile HTTP/1.1
 content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM

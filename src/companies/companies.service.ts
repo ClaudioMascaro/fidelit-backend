@@ -12,7 +12,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 import { UsersService } from 'src/users/users.service';
 import { DataSource } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
-import { VerificationService } from 'src/notifications/verifications.service';
+import { VerificationService } from 'src/verification/verification.service';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { Lcard } from 'src/lcards/entities/lcard.entity';
 
@@ -168,8 +168,12 @@ export class CompaniesService {
     return `This action returns all companies`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} company`;
+  async findOne(id: number) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    return queryRunner.manager.findOne(Company, {
+      where: { id },
+      relations: ['address', 'lcard_rule'],
+    });
   }
 
   async update(id: number, updateCompanyDto: UpdateCompanyDto) {

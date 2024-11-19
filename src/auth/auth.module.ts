@@ -7,10 +7,16 @@ import { ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth.guard';
 import { RolesGuard } from './roles.guard';
+import { CompaniesModule } from 'src/companies/companies.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Company } from 'src/companies/entities/company.entity';
+import { VerificationService } from 'src/verification/verification.service';
 
 @Module({
   imports: [
+    CompaniesModule,
     UsersModule,
+    TypeOrmModule.forFeature([Company]),
     JwtModule.registerAsync({
       useFactory: async (configService: ConfigService) => ({
         secret: await configService.get('JWT_SECRET'),
@@ -23,6 +29,7 @@ import { RolesGuard } from './roles.guard';
   ],
   providers: [
     AuthService,
+    VerificationService,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,

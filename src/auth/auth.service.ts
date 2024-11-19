@@ -3,12 +3,15 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { SignInDto } from './dto/sign-in.dto';
 import { User } from 'src/users/entities/user.entity';
+import { DataSource } from 'typeorm';
+import { Company } from 'src/companies/entities/company.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private readonly dataSource: DataSource,
   ) {}
 
   async signIn(signInDto: SignInDto): Promise<any> {
@@ -47,6 +50,17 @@ export class AuthService {
     if (!isValidPassword) {
       throw new UnauthorizedException('Invalid password');
     }
+
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    const company = await queryRunner.manager.findOne(Company, {
+      where: { id: user.company_id },
+    });
+
+    if (!company.verified) {
+      throw new UnauthorizedException('Company not verified');
+    }
+
     const payload = {
       sub: user.id,
       email: user.email,

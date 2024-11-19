@@ -10,6 +10,7 @@ import {
   UsePipes,
   Request,
   NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import { CompaniesService } from './companies.service';
 import {
