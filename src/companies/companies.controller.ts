@@ -45,6 +45,18 @@ export class CompaniesController {
   }
 
   @Version('1')
+  @Public()
+  @Post('verify')
+  async verifyCompany(@Body() body: { email: string; code: string }) {
+    const { email, code } = body;
+    const isVerified = await this.companiesService.verifyCompany(email, code);
+    if (!isVerified) {
+      throw new BadRequestException('Verification failed');
+    }
+    return { message: 'Company verified successfully' };
+  }
+
+  @Version('1')
   @Patch(':id')
   @Roles(Role.CompanyAdmin)
   update(

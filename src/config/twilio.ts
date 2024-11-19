@@ -8,6 +8,7 @@ const config = {
   authToken: `${process.env.TWILIO_AUTH_TOKEN}`,
   from: `${process.env.TWILIO_WHATSAPP_FROM}`,
   enabled: `${process.env.TWILIO_ENABLED}` === 'true',
+  verifyServiceSid: `${process.env.TWILIO_VERIFY_SERVICE_SID}`,
 };
 
 export default registerAs('twilio', () => config);

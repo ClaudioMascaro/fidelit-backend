@@ -12,6 +12,7 @@ import { UpdateCompanyDto } from './dto/update-company.dto';
 import { UsersService } from 'src/users/users.service';
 import { DataSource } from 'typeorm';
 import { Role } from 'src/auth/enums/role.enum';
+import { VerificationService } from 'src/notifications/verifications.service';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { Lcard } from 'src/lcards/entities/lcard.entity';
 
@@ -20,6 +21,7 @@ export class CompaniesService {
   constructor(
     private readonly usersService: UsersService,
     private readonly dataSource: DataSource,
+    private readonly verificationService: VerificationService,
     private readonly notificationsService: NotificationsService,
   ) {}
 
@@ -75,6 +77,7 @@ export class CompaniesService {
       company.updated_at = now;
       company.plan_id = 1;
       company.subscription_id = 1;
+      company.verified = false;
 
       const createdCompany = await queryRunner.manager.save(company);
 
@@ -92,18 +95,57 @@ export class CompaniesService {
 
       await queryRunner.commitTransaction();
 
+      // Send verification
+      await this.verificationService.sendVerification(
+        createdCompany.email,
+        'email',
+      );
+
       return {
-        ...createdCompany,
-        user: createdUser,
-        address: createdAddress,
-        lcard_rule: createdLcardRule,
+        message: 'Please verify your email to activate your account',
+        data: {
+          ...createdCompany,
+          user: createdUser,
+          address: createdAddress,
+          lcard_rule: createdLcardRule,
+        },
       };
     } catch (err) {
       await queryRunner.rollbackTransaction();
-
       throw new BadRequestException(err.message);
     } finally {
       await queryRunner.release();
+    }
+  }
+
+  async verifyCompany(email: string, code: string): Promise<boolean> {
+    const verified = await this.verificationService.checkVerification(
+      email,
+      code,
+    );
+    if (verified) {
+      const queryRunner = this.dataSource.createQueryRunner();
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+
+      try {
+        const company = await queryRunner.manager.findOne(Company, {
+          where: { email },
+        });
+
+        if (company) {
+          company.verified = true;
+          await queryRunner.manager.save(company);
+
+          await queryRunner.commitTransaction();
+          return true;
+        }
+      } catch (err) {
+        await queryRunner.rollbackTransaction();
+        throw new BadRequestException(err.message);
+      } finally {
+        await queryRunner.release();
+      }
     }
   }
 

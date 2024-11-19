@@ -42,6 +42,9 @@ export class Company {
   subscription_id: number;
 
   @Column()
+  verified: boolean;
+
+  @Column()
   created_at: Date;
 
   @Column()
