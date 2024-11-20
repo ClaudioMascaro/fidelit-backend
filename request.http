@@ -6,34 +6,34 @@ GET http://localhost:3000/status HTTP/1.1
 GET http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
 #Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY2xhdWRpb3JtYXNjYXJvQGdtYWlsLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTczMjEyNTcxNCwiZXhwIjoxNzMyMjk4NTE0fQ.to97f2g6cZN2weBotIimQinG-3nzsHRPAc8STzoasa8
 ###
 
-GET http://localhost:3000/v1/lcards/3 HTTP/1.1
+GET http://localhost:3000/v1/lcards/1 HTTP/1.1
 content-type: application/json
 #Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MiwiaWF0IjoxNzMwMTQzMTIwLCJleHAiOjE3MzAzMTU5MjB9.5Zp66M-KQc4h2wFDEJyTWKZPrvVQIt3S1kbJciPkXd8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTUzMDIxLCJleHAiOjE3MzIxMjU4MjF9.vLKU-QSMlOti0vkc3wGKckAhrd841n2_bQ5I6kYQ9yM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY2xhdWRpb3JtYXNjYXJvQGdtYWlsLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTczMjEyNTcxNCwiZXhwIjoxNzMyMjk4NTE0fQ.to97f2g6cZN2weBotIimQinG-3nzsHRPAc8STzoasa8
 ###
 
 POST http://localhost:3000/v1/sales HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTYzMTU2LCJleHAiOjE3MzIxMzU5NTZ9.dQ89LnAqMF-ir6UPtrwQe7VhMlNcfiBbmHQ7L9JqO3w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY2xhdWRpb3JtYXNjYXJvQGdtYWlsLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTczMjEyNTcxNCwiZXhwIjoxNzMyMjk4NTE0fQ.to97f2g6cZN2weBotIimQinG-3nzsHRPAc8STzoasa8
 
 {
-  "lcard_id": 3,
+  "lcard_id": 1,
   "value": 100.0
 }
 ###
 
 POST http://localhost:3000/v1/lcards HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTY4MzIwLCJleHAiOjE3MzIxNDExMjB9._anYA_a-ROBOk8TiwdGnFOYff0pjyy9HLDbkAyi65M0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY2xhdWRpb3JtYXNjYXJvQGdtYWlsLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTczMjEyNTcxNCwiZXhwIjoxNzMyMjk4NTE0fQ.to97f2g6cZN2weBotIimQinG-3nzsHRPAc8STzoasa8
 
 {
-  "name": "John Doe",
-  "email": "john.doe1@gmail.com",
-  "phone": "1354567891",
-  "cpf": "12533677901",
+  "name": "Marina Mascaro",
+  "email": "marinam2ascaro@gmail.com",
+  "phone": "5511985911669",
+  "cpf": "12533677101",
   "birthday": "1990-01-01",
   "startingPoints": 0,
   "startingStamps": 0
@@ -46,14 +46,14 @@ POST http://localhost:3000/v1/companies HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Example Company",
-  "description": "This is an example company.",
+  "name": "Issa Sushi",
+  "description": "Sushis",
   "logo": "https://example.com/logo.png",
-  "segment": "Technology",
+  "segment": "Foods",
   "website": "https://example.com",
   "cnpj": "12.346.618/0001-99",
   "email": "claudiormascaro@gmail.com",
-  "password": "securepassword1232",
+  "password": "senhasegura123",
   "phone": "+1-234-567-890",
   "address": {
     "street": "123 Example St",
@@ -67,9 +67,9 @@ content-type: application/json
   },
   "lcard_rule": {
     "max_stamps": 10,
-    "stamps_prize": "Free Coffee",
-    "score_goal": 100,
-    "score_goal_prize": "Discount Voucher",
+    "stamps_prize": "Temaki grátis",
+    "score_goal": 300,
+    "score_goal_prize": "10% de cashback",
     "score_expiration_time": 180,
     "stamps_expiration_time": 365,
     "score_booster": 1
@@ -93,7 +93,16 @@ content-type: application/json
 
 {
   "email": "claudiormascaro@gmail.com",
-  "code": 463440
+  "code": 328853
+}
+
+###
+
+POST http://localhost:3000/v1/companies/verify/resend HTTP/1.1
+content-type: application/json
+
+{
+  "email": "claudiormascaro@gmail.com"
 }
 
 ###
@@ -112,7 +121,7 @@ content-type: application/json
 
 {
   "email": "claudiormascaro@gmail.com",
-  "code": 877189,
+  "code": 217535,
   "newPassword": "securepassword111"
 }
 
@@ -124,10 +133,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsI
 ###
 PATCH http://localhost:3000/v1/companies/1 HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY29udGFjdEBleGFtcGxlMTguY29tIiwicGhvbmUiOiIrMS0yMzQtNTY3LTg5MCIsInJvbGVzIjpbImNvbXBhbnlfYWRtaW4iXSwiY29tcGFueSI6MSwiaWF0IjoxNzMxOTY4MzIwLCJleHAiOjE3MzIxNDExMjB9._anYA_a-ROBOk8TiwdGnFOYff0pjyy9HLDbkAyi65M0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiY2xhdWRpb3JtYXNjYXJvQGdtYWlsLmNvbSIsInBob25lIjoiKzEtMjM0LTU2Ny04OTAiLCJyb2xlcyI6WyJjb21wYW55X2FkbWluIl0sImNvbXBhbnkiOjEsImlhdCI6MTczMjEyNTcxNCwiZXhwIjoxNzMyMjk4NTE0fQ.to97f2g6cZN2weBotIimQinG-3nzsHRPAc8STzoasa8
 
 {
   "lcard_rule": {
-    "score_booster": 1
+    "score_booster": 1.5
   }
 }

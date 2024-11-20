@@ -58,6 +58,15 @@ export class CompaniesController {
   }
 
   @Version('1')
+  @Public()
+  @Post('verify/resend')
+  async resendVerificationCode(@Body() body: { email: string }) {
+    const { email } = body;
+    await this.companiesService.resendVerificationCode(email);
+    return { message: 'Verification code sent successfully' };
+  }
+
+  @Version('1')
   @Patch(':id')
   @Roles(Role.CompanyAdmin)
   update(

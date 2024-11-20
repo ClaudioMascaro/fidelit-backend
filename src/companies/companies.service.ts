@@ -164,6 +164,21 @@ export class CompaniesService {
     return await this.usersService.create(userDto);
   }
 
+  async resendVerificationCode(email: string) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+
+    const company = await queryRunner.manager.findOne(Company, {
+      where: { email },
+    });
+
+    if (!company) {
+      throw new NotFoundException('Company not found');
+    }
+
+    return await this.verificationService.sendVerification(email, 'email');
+  }
+
   findAll() {
     return `This action returns all companies`;
   }
