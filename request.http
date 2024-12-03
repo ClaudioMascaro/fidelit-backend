@@ -46,15 +46,15 @@ POST http://localhost:3000/v1/companies HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Issa Sushi",
+  "name": "Mascaro Risotos",
   "description": "Sushis",
   "logo": "https://example.com/logo.png",
   "segment": "Foods",
   "website": "https://example.com",
-  "cnpj": "12.346.618/0001-99",
+  "cnpj": "36194657000184",
   "email": "claudiormascaro@gmail.com",
   "password": "senhasegura123",
-  "phone": "+1-234-567-890",
+  "phone": "+5511985911669",
   "address": {
     "street": "123 Example St",
     "number": "456",
@@ -73,6 +73,24 @@ content-type: application/json
     "score_expiration_time": 180,
     "stamps_expiration_time": 365,
     "score_booster": 1
+  },
+  "plan": "PREMIUM",
+  "remoteip": "172.19.0.1",
+  "creditCard": {
+    "holderName": "marcelo h almeida",
+    "number": "5162306219378829",
+    "expiryMonth": "05",
+    "expiryYear": "2026",
+    "ccv": "318"
+  },
+  "creditCardHolderInfo": {
+    "name": "Marcelo Henrique Almeida",
+    "email": "marcelo.almeida@gmail.com",
+    "cpfCnpj": "24971563792",
+    "postalCode": "89223-005",
+    "addressNumber": "277",
+    "phone": "4738010919",
+    "mobilePhone": "47998781877"
   }
 }
 

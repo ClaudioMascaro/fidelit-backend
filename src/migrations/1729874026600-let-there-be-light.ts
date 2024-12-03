@@ -15,8 +15,7 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "cnpj" varchar NOT NULL,
                 "main_address_id" integer UNIQUE,
                 "lcard_rules_id" integer UNIQUE,
-                "plan_id" integer,
-                "subscription_id" integer,
+                "subscription_id" varchar,
                 "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
                 "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
               );

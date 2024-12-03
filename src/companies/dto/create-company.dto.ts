@@ -30,6 +30,29 @@ export const createCompanySchema = z
       score_goal_prize: z.string(),
       score_booster: z.number(),
     }),
+    plan: z.enum(['FREE', 'PRO', 'PREMIUM', 'INFINITY']),
+    creditCard: z.object({
+      holderName: z.string(),
+      number: z.string(),
+      expiryMonth: z.string(),
+      expiryYear: z.string(),
+      ccv: z.string(),
+    }),
+    creditCardHolderInfo: z
+      .object({
+        name: z.string(),
+        email: z.string(),
+        cpfCnpj: z.string(),
+        postalCode: z.string(),
+        addressNumber: z.string(),
+        addressComplement: z.string().optional(),
+        phone: z.string(),
+        mobilePhone: z.string(),
+      })
+      .partial({
+        addressComplement: true,
+      }),
+    remoteip: z.string(),
   })
   .partial({
     description: true,
@@ -38,6 +61,8 @@ export const createCompanySchema = z
     phone: true,
     address: true,
     lcard_rule: true,
+    creditCard: true,
+    creditCardHolderInfo: true,
   })
   .strict();
 

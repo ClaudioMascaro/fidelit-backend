@@ -15,6 +15,7 @@ export const createUserSchema = z
   .partial({
     cpf: true,
     cnpj: true,
+    company_id: true,
   })
   .strict();
 

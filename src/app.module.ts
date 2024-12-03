@@ -11,10 +11,11 @@ import { AuthModule } from './auth/auth.module';
 import { SalesModule } from './sales/sales.module';
 import typeorm from './config/typeorm';
 import twilio from './config/twilio';
+import payments from './config/payments';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, load: [typeorm, twilio] }),
+    ConfigModule.forRoot({ isGlobal: true, load: [typeorm, twilio, payments] }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) =>

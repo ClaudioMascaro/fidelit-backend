@@ -44,13 +44,16 @@ export class Company {
   lcard_rules_id: number;
 
   @Column()
-  plan_id: number;
-
-  @Column()
   subscription_id: number;
 
   @Column()
   verified: boolean;
+
+  @Column()
+  plan_name: string;
+
+  @Column()
+  plan_status: string;
 
   @Column()
   created_at: Date;

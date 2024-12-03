@@ -15,6 +15,8 @@ import { Role } from 'src/auth/enums/role.enum';
 import { VerificationService } from 'src/verification/verification.service';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { Lcard } from 'src/lcards/entities/lcard.entity';
+import { PaymentsService } from 'src/payments/payments.service';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class CompaniesService {
@@ -23,7 +25,19 @@ export class CompaniesService {
     private readonly dataSource: DataSource,
     private readonly verificationService: VerificationService,
     private readonly notificationsService: NotificationsService,
+    private readonly paymentsService: PaymentsService,
   ) {}
+
+  getPlanValue(plan: string) {
+    const planValues = {
+      FREE: 0,
+      PRO: 79.9,
+      PREMIUM: 129.9,
+      INFINITE: 199.9,
+    };
+
+    return planValues[plan] || 0;
+  }
 
   async create(createCompanyDto: CreateCompanyDto) {
     const queryRunner = this.dataSource.createQueryRunner();
@@ -75,11 +89,9 @@ export class CompaniesService {
       company.lcard_rules_id = createdLcardRule.id;
       company.created_at = now;
       company.updated_at = now;
-      company.plan_id = 1;
-      company.subscription_id = 1;
+      company.plan_name = createCompanyDto.plan;
+      company.plan_status = 'active';
       company.verified = false;
-
-      const createdCompany = await queryRunner.manager.save(company);
 
       const userDto: CreateUserDto = {
         name: 'Company Admin',
@@ -88,12 +100,43 @@ export class CompaniesService {
         cnpj: createCompanyDto.cnpj,
         password: createCompanyDto.password,
         role: Role.CompanyAdmin,
-        company_id: createdCompany.id,
       };
 
       const createdUser = await this.usersService.create(userDto);
 
+      if (createCompanyDto.plan !== 'FREE') {
+        const { id: customerId } = await this.paymentsService.createCustomer({
+          name: createCompanyDto.name,
+          cpfCnpj: createCompanyDto.cnpj,
+        });
+
+        const nextDueDate = new Date(now.setDate(now.getDate() + 14))
+          .toISOString()
+          .split('T')[0];
+
+        const subscription = await this.paymentsService.createSubscription({
+          customer: customerId,
+          description: createCompanyDto.plan,
+          billingType: 'CREDIT_CARD',
+          value: this.getPlanValue(createCompanyDto.plan),
+          nextDueDate: nextDueDate,
+          cycle: 'MONTHLY',
+          callback: {
+            successUrl: 'https://fidelit.app',
+          },
+          creditCard: createCompanyDto.creditCard,
+          creditCardHolderInfo: createCompanyDto.creditCardHolderInfo,
+          remoteip: createCompanyDto.remoteip,
+        });
+
+        company.subscription_id = subscription.id;
+      }
+
+      const createdCompany = await queryRunner.manager.save(company);
+
       await queryRunner.commitTransaction();
+
+      await this.usersService.updateCompany(createdUser.id, createdCompany.id);
 
       // Send verification
       await this.verificationService.sendVerification(

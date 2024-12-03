@@ -8,6 +8,7 @@ import { LcardRule } from './entities/lcard-rules.entity';
 import { Company } from './entities/company.entity';
 import { NotificationsModule } from 'src/notifications/notifications.module';
 import { VerificationModule } from 'src/verification/verification.module';
+import { PaymentsModule } from 'src/payments/payments.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { VerificationModule } from 'src/verification/verification.module';
     UsersModule,
     NotificationsModule,
     VerificationModule,
+    PaymentsModule,
   ],
   controllers: [CompaniesController],
   providers: [CompaniesService],

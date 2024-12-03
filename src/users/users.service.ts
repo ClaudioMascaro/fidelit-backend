@@ -13,6 +13,16 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
   ) {}
 
+  async updateCompany(userId: number, company_id: number) {
+    const user = await this.usersRepository.findOneBy({ id: userId });
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    user.company_id = company_id;
+    await this.usersRepository.save(user);
+  }
+
   async create(createUserDto: CreateUserDto) {
     const now = new Date();
 
