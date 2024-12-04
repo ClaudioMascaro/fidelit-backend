@@ -44,7 +44,10 @@ export class Company {
   lcard_rules_id: number;
 
   @Column()
-  subscription_id: number;
+  subscription_id: string;
+
+  @Column()
+  external_customer_id: string;
 
   @Column()
   verified: boolean;

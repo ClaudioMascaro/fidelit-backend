@@ -12,6 +12,10 @@ import { SalesModule } from './sales/sales.module';
 import typeorm from './config/typeorm';
 import twilio from './config/twilio';
 import payments from './config/payments';
+import { PaymentsModule } from './payments/payments.module';
+import { VerificationModule } from './verification/verification.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { WebhooksModule } from './webhooks/webhooks.module';
 
 @Module({
   imports: [
@@ -24,6 +28,10 @@ import payments from './config/payments';
     LcardsModule,
     UsersModule,
     CompaniesModule,
+    VerificationModule,
+    NotificationsModule,
+    PaymentsModule,
+    WebhooksModule,
     AuthModule,
     SalesModule,
   ],

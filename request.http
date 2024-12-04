@@ -46,15 +46,15 @@ POST http://localhost:3000/v1/companies HTTP/1.1
 content-type: application/json
 
 {
-  "name": "Mascaro Risotos",
+  "name": "Sharp Edge Barber Shop",
   "description": "Sushis",
   "logo": "https://example.com/logo.png",
   "segment": "Foods",
   "website": "https://example.com",
-  "cnpj": "36194657000184",
-  "email": "claudiormascaro@gmail.com",
+  "cnpj": "31018634000103",
+  "email": "claudiormasca1r1o@gmail.com",
   "password": "senhasegura123",
-  "phone": "+5511985911669",
+  "phone": "+5511985111667",
   "address": {
     "street": "123 Example St",
     "number": "456",
@@ -74,7 +74,7 @@ content-type: application/json
     "stamps_expiration_time": 365,
     "score_booster": 1
   },
-  "plan": "PREMIUM",
+  "plan": "INFINITY",
   "remoteip": "172.19.0.1",
   "creditCard": {
     "holderName": "marcelo h almeida",

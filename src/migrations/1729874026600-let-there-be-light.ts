@@ -16,6 +16,7 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "main_address_id" integer UNIQUE,
                 "lcard_rules_id" integer UNIQUE,
                 "subscription_id" varchar,
+                "external_customer_id" varchar,
                 "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
                 "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
               );

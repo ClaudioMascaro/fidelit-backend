@@ -1,7 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { CreateSubscriptionDto } from './dto/create-subscription.dto';
+import { CompaniesService } from 'src/companies/companies.service';
+import { ModuleRef } from '@nestjs/core';
 
 @Injectable()
 export class PaymentsService {

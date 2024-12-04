@@ -33,7 +33,7 @@ export class CompaniesService {
       FREE: 0,
       PRO: 79.9,
       PREMIUM: 129.9,
-      INFINITE: 199.9,
+      INFINITY: 199.9,
     };
 
     return planValues[plan] || 0;
@@ -110,6 +110,8 @@ export class CompaniesService {
           cpfCnpj: createCompanyDto.cnpj,
         });
 
+        company.external_customer_id = customerId;
+
         const nextDueDate = new Date(now.setDate(now.getDate() + 14))
           .toISOString()
           .split('T')[0];
@@ -130,6 +132,7 @@ export class CompaniesService {
         });
 
         company.subscription_id = subscription.id;
+        company.plan_status = 'trial';
       }
 
       const createdCompany = await queryRunner.manager.save(company);
@@ -231,6 +234,13 @@ export class CompaniesService {
     return queryRunner.manager.findOne(Company, {
       where: { id },
       relations: ['address', 'lcard_rule'],
+    });
+  }
+
+  async findByExternalCustomerId(externalCustomerId: string) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    return queryRunner.manager.findOne(Company, {
+      where: { external_customer_id: externalCustomerId },
     });
   }
 
@@ -361,6 +371,10 @@ export class CompaniesService {
       company.email = updateCompanyDto.email || company.email;
       company.phone = updateCompanyDto.phone || company.phone;
       company.cnpj = updateCompanyDto.cnpj || company.cnpj;
+      company.external_customer_id =
+        updateCompanyDto.external_customer_id || company.external_customer_id;
+      company.plan_name = updateCompanyDto.plan || company.plan_name;
+      company.plan_status = updateCompanyDto.plan_status || company.plan_status;
       company.updated_at = now;
 
       const updatedCompany = await queryRunner.manager.save(company);

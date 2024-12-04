@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner } from 'typeorm';
 export class AddCompanyPlanInfo1733246938092 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
-            CREATE TYPE "plan_status" AS ENUM ('active', 'inactive', 'canceled');
+            CREATE TYPE "plan_status" AS ENUM ('active', 'trial', 'inactive', 'canceled', 'free');
             CREATE TYPE "plan_name" AS ENUM ('FREE', 'PRO', 'PREMIUM', 'INFINITY');
             ALTER TABLE "companies"
             ADD COLUMN "plan_name" "plan_name" NOT NULL,

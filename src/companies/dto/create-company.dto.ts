@@ -53,6 +53,8 @@ export const createCompanySchema = z
         addressComplement: true,
       }),
     remoteip: z.string(),
+    plan_status: z.string(),
+    external_customer_id: z.string(),
   })
   .partial({
     description: true,
@@ -63,6 +65,8 @@ export const createCompanySchema = z
     lcard_rule: true,
     creditCard: true,
     creditCardHolderInfo: true,
+    plan_status: true,
+    external_customer_id: true,
   })
   .strict();
 
