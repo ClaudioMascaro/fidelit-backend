@@ -5,6 +5,8 @@ export const createSaleSchema = z
     company_id: z.number(),
     lcard_id: z.number(),
     value: z.number(),
+    useScore: z.boolean(),
+    useStamps: z.boolean(),
   })
   .partial({
     company_id: true,

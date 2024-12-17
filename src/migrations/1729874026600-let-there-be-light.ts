@@ -36,6 +36,8 @@ export class LetThereBeLight1729874026600 implements MigrationInterface {
                 "id" SERIAL PRIMARY KEY,
                 "lcard_id" integer NOT NULL,
                 "expires_at" timestamp,
+                "used_score" boolean DEFAULT false,
+                "used_stamps" boolean DEFAULT false,
                 "created_at" timestamp DEFAULT CURRENT_TIMESTAMP,
                 "updated_at" timestamp DEFAULT CURRENT_TIMESTAMP
               );

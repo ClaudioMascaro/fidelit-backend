@@ -63,11 +63,38 @@ export class SalesService {
       sale.created_at = now;
       sale.updated_at = now;
 
-      const createdSale = await queryRunner.manager.save(sale);
+      if (createSaleDto.useScore) {
+        if (lcard.score < companyLcardRules.score_goal) {
+          throw new BadRequestException('Insufficient points');
+        }
+
+        // Update points
+        lcard.score -= companyLcardRules.score_goal;
+        lcard.updated_at = now;
+
+        await queryRunner.manager.save(lcard);
+
+        sale.used_score = true;
+      }
 
       // Update points
       lcard.score += sale.value * companyLcardRules.score_booster;
       lcard.updated_at = now;
+
+      if (createSaleDto.useStamps) {
+        if (lcardStampsCount < companyLcardRules.max_stamps) {
+          throw new BadRequestException('Insufficient stamps');
+        }
+
+        // Delete stamps
+        await queryRunner.manager.delete(LcardStamp, {
+          where: { lcard_id: lcard.id },
+        });
+
+        sale.used_stamps = true;
+      }
+
+      const createdSale = await queryRunner.manager.save(sale);
 
       if (lcardStampsCount < companyLcardRules.max_stamps) {
         // Add stamp

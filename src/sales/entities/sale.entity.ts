@@ -25,6 +25,12 @@ export class Sale {
   value: number;
 
   @Column()
+  used_score: boolean;
+
+  @Column()
+  used_stamps: boolean;
+
+  @Column()
   created_at: Date;
 
   @Column()
